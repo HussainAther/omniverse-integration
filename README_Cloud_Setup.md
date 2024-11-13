@@ -98,7 +98,4 @@ The goal of this setup is to establish a scalable, collaborative cloud environme
 - **Oracle Cloud Documentation**: [OCI Documentation](https://docs.oracle.com/en/cloud/)
 - **Omniverse GitHub Repository**: [NVIDIA Omniverse GitHub](https://github.com/NVIDIA-Omniverse)
 
----
-
-By following this guide, you’ll have a fully functional NVIDIA Omniverse environment in the cloud, enabling collaborative development and real-time analytics for Alter Learning’s VR/AR and AI-powered educational applications. If you have questions or need further assistance, feel free to contact our team!
 

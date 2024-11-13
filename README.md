@@ -78,6 +78,4 @@ omniverse-integration/
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
----
 
-By following this structure, we ensure the Omniverse Integration repository remains organized, easily navigable, and set up for scalable collaborative learning experiences.
