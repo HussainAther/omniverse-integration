@@ -1,0 +1,27 @@
+
+name: NGC Model Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_model_from_ngc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up NVIDIA NGC CLI
+        run: |
+          curl -s -L https://ngc.nvidia.com/setup | bash
+          echo "$NGC_API_KEY" | ngc config set
+
+      - name: Download and deploy model
+        run: |
+          ngc registry model download alterlearning/models:adaptive_vr_model:1.0.0
+          docker build -t vr_model_inference -f Dockerfile .
+          docker run --gpus all vr_model_inference
+        env:
+          NGC_API_KEY: ${{ secrets.NGC_API_KEY }}
