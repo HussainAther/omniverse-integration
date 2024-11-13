@@ -1,19 +1,12 @@
 
-# Base image with CUDA support
-FROM nvidia/cuda:11.4.3-runtime-ubuntu20.04
+# NVIDIA base image with CUDA for optimized inference
+FROM nvcr.io/nvidia/pytorch:22.06-py3
 
-# Install Python and essential packages
-RUN apt-get update && apt-get install -y     python3     python3-pip
+# Install any additional dependencies if needed
+RUN apt-get update && apt-get install -y     python3-pip &&     pip3 install tensorrt
 
-# Install PyTorch with CUDA and TensorRT support
-RUN pip3 install torch torchvision     && pip3 install pycuda tensorrt
+# Copy inference script
+COPY load_pretrained_ngc.py /app/load_pretrained_ngc.py
 
-# Set working directory
-WORKDIR /app
-
-# Copy training and inference scripts
-COPY train_model_cuda.py /app/train_model_cuda.py
-COPY inference_with_tensorrt.py /app/inference_with_tensorrt.py
-
-# Set default command to run the training script
-CMD ["python3", "train_model_cuda.py"]
+# Run inference script by default
+CMD ["python3", "/app/load_pretrained_ngc.py"]
